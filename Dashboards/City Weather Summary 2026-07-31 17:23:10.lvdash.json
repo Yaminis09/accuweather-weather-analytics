@@ -1,0 +1,594 @@
+{
+  "datasets": [
+    {
+      "name": "city_weather",
+      "displayName": "City Weather Data",
+      "config": {
+        "version": "1.1",
+        "source": "workspace.gold.city_weather_summary",
+        "dimensions": [
+          {
+            "name": "city_name",
+            "expr": "city_name"
+          }
+        ],
+        "measures": [
+          {
+            "name": "avg_temperature",
+            "expr": "AVG(avg_temperature)"
+          },
+          {
+            "name": "highest_temperature",
+            "expr": "MAX(highest_temperature)"
+          },
+          {
+            "name": "lowest_temperature",
+            "expr": "MIN(lowest_temperature)"
+          },
+          {
+            "name": "avg_humidity",
+            "expr": "AVG(avg_humidity)"
+          },
+          {
+            "name": "avg_wind_speed",
+            "expr": "AVG(avg_wind_speed)"
+          },
+          {
+            "name": "highest_wind_speed",
+            "expr": "MAX(highest_wind_speed)"
+          },
+          {
+            "name": "total_precipitation",
+            "expr": "SUM(total_precipitation)"
+          },
+          {
+            "name": "avg_visibility",
+            "expr": "AVG(avg_visibility)"
+          },
+          {
+            "name": "avg_uv_index",
+            "expr": "AVG(avg_uv_index)"
+          },
+          {
+            "name": "total_observations",
+            "expr": "SUM(total_observations)"
+          },
+          {
+            "name": "city_count",
+            "expr": "COUNT(DISTINCT city_name)"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "e7bb1f60",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "total_cities",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "measure(city_count)",
+                      "expression": "MEASURE(`city_count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Total Cities",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(city_count)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "total_observations",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "measure(total_observations)",
+                      "expression": "MEASURE(`total_observations`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Total Observations",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(total_observations)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_temp",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "measure(avg_temperature)",
+                      "expression": "MEASURE(`avg_temperature`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Average Temperature",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(avg_temperature)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "highest_wind",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "measure(highest_wind_speed)",
+                      "expression": "MEASURE(`highest_wind_speed`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Highest Wind Speed",
+                "showTitle": true
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(highest_wind_speed)",
+                  "rowNumber": 0
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "temp_by_city",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "city_name",
+                      "expression": "`city_name`"
+                    },
+                    {
+                      "name": "measure(avg_temperature)",
+                      "expression": "MEASURE(`avg_temperature`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Average Temperature by City",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "city_name",
+                  "displayName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(avg_temperature)",
+                  "displayName": "avg_temperature",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "city_name",
+                  "displayName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "precipitation_by_city",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "city_name",
+                      "expression": "`city_name`"
+                    },
+                    {
+                      "name": "measure(total_precipitation)",
+                      "expression": "MEASURE(`total_precipitation`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Total Precipitation by City",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "city_name",
+                  "displayName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(total_precipitation)",
+                  "displayName": "total_precipitation",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "city_name",
+                  "displayName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 2,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "weather_table",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "city_name",
+                      "expression": "`city_name`"
+                    },
+                    {
+                      "name": "measure(avg_temperature)",
+                      "expression": "MEASURE(`avg_temperature`)"
+                    },
+                    {
+                      "name": "measure(highest_temperature)",
+                      "expression": "MEASURE(`highest_temperature`)"
+                    },
+                    {
+                      "name": "measure(lowest_temperature)",
+                      "expression": "MEASURE(`lowest_temperature`)"
+                    },
+                    {
+                      "name": "measure(avg_humidity)",
+                      "expression": "MEASURE(`avg_humidity`)"
+                    },
+                    {
+                      "name": "measure(total_precipitation)",
+                      "expression": "MEASURE(`total_precipitation`)"
+                    },
+                    {
+                      "name": "measure(avg_wind_speed)",
+                      "expression": "MEASURE(`avg_wind_speed`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "City Weather Details",
+                "showTitle": true
+              },
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "city_name"
+                  },
+                  {
+                    "fieldName": "measure(avg_temperature)"
+                  },
+                  {
+                    "fieldName": "measure(highest_temperature)"
+                  },
+                  {
+                    "fieldName": "measure(lowest_temperature)"
+                  },
+                  {
+                    "fieldName": "measure(avg_humidity)"
+                  },
+                  {
+                    "fieldName": "measure(total_precipitation)"
+                  },
+                  {
+                    "fieldName": "measure(avg_wind_speed)"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "humidity_by_city",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "city_name",
+                      "expression": "`city_name`"
+                    },
+                    {
+                      "name": "measure(avg_humidity)",
+                      "expression": "MEASURE(`avg_humidity`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Average Humidity by City",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "city_name",
+                  "displayName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(avg_humidity)",
+                  "displayName": "avg_humidity",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "city_name",
+                  "displayName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "uv_index_by_city",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "city_weather",
+                  "fields": [
+                    {
+                      "name": "city_name",
+                      "expression": "`city_name`"
+                    },
+                    {
+                      "name": "measure(avg_uv_index)",
+                      "expression": "MEASURE(`avg_uv_index`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Average UV Index by City",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "city_name",
+                  "displayName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(avg_uv_index)",
+                  "displayName": "avg_uv_index",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "city_name",
+                  "displayName": "city_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 10,
+            "width": 6,
+            "height": 4
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
